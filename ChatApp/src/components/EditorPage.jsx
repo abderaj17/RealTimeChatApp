@@ -1,5 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react'
+import toast from 'react-hot-toast';
+
 import { useNavigate, useParams } from 'react-router-dom';
+import { ACTIONS } from './Actions';
 
 
 
@@ -37,7 +40,21 @@ const EditorPage = () => {
 
     useEffect(()=> {
         const init = async ()=>{
-            
+            socketRef.current = await initSocket();
+            socketRef.current.on('connect_error', err => handleErrors(err))
+            socketRef.current.on('connect_failed', err => handleErrors(err))
+
+            console.log('inside useeffect');
+
+            const handleErrors = err =>{
+                console.log('Error', err);
+                toast.error('Socket connection failed, try again later')
+                navigate('/');
+            }
+            socketRef.current.emit(ACTIONS.JOIN,{
+                roomId,
+                username:
+            })
         }
     })
   return (

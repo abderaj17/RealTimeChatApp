@@ -43,11 +43,14 @@ const Home = () => {
         <div align="center">
           <img src="https://acciojob.com/src/Navbar/logo.svg" alt='nav' />
         </div>
-        <input type='text' value={username} onChange={e => setRoomId(e.target.value)} placeholder='USERNAME' onKeyUp={handleInputEnter} />
-        <button onClick={joinRoom}>JOIN</button>
+        <div>
+        <input style={{borderRadius: "6px"}} type='text' value={roomId} onChange={e => setRoomId(e.target.value)} placeholder='ROOM ID' onKeyUp={handleInputEnter} />
+        <input style={{borderRadius: "6px"}} type='text' value={username} onChange={e => setRoomId(e.target.value)} placeholder='USERNAME' onKeyUp={handleInputEnter} />
+        <button style={{borderRadius: "6px"}} onClick={joinRoom}>JOIN</button>
         <p style={{color: 'black'}}>Don't have a room ID? Create  
-        <span style={{color: "#EFB036", cursor: "pointer"}} onClick={generateRoomId}> New Room</span>
+        <span style={{color: "#EFB036", cursor: "pointer"}} onClick={generateRoomId}>New Room</span>
         </p>
+        </div>
       </div>
     </div>
   )
