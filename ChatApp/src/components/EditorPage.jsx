@@ -53,13 +53,13 @@ const EditorPage = () => {
             }
             socketRef.current.emit(ACTIONS.JOIN,{
                 roomId,
-                username:
+                username: Location.state?.username
             })
         }
-    })
+    },[])
   return (
     <div>
-
+         khh
     </div>
   )
 }
