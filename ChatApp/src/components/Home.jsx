@@ -46,7 +46,7 @@ const Home = () => {
         <input type='text' value={username} onChange={e => setRoomId(e.target.value)} placeholder='USERNAME' onKeyUp={handleInputEnter} />
         <button onClick={joinRoom}>JOIN</button>
         <p style={{color: 'black'}}>Don't have a room ID? Create  
-        <span style={{color: "#EFB036", cursor: "pointer"}}> New Room</span>
+        <span style={{color: "#EFB036", cursor: "pointer"}} onClick={generateRoomId}> New Room</span>
         </p>
       </div>
     </div>
