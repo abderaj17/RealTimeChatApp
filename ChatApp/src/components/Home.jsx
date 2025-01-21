@@ -17,7 +17,19 @@ const Home = () => {
         toast("Room ID is generated");
     }
     const joinRoom = e =>{
-     console.log("I've joined room.")
+     console.log("I've joined room.");
+
+     if(!roomId || !username){
+      toast.error("Both the fields are required.")
+      return;
+     }
+      navigate(`/editor/${roomId}`,{
+        state:{
+          username
+        }
+      });
+
+     toast.success("Room is created.")
     }
     const handleInputEnter = e =>{
       if(e.code === "Enter"){
