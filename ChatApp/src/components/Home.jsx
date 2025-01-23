@@ -35,6 +35,7 @@ const Home = () => {
       if(e.code === "Enter"){
         joinRoom();
       }
+      
 
     }
   return (
