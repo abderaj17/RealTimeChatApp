@@ -37,18 +37,21 @@ const Home = () => {
       }
     }
   return (
-    <div style={{width:"100%", height:"100vh", display: "flex" , justifyContent: "center", alignItems: "center"}}>
-      <div style={{minWidth:"600px", maxWidth: "800px", height: "400px", backgroundColor: "white", borderRadius: "16px",}}>
+    <div style={{width: "100%", height: "100vh", display: "flex", justifyContent: "center", alignItems: "center"}}>
+      <div style={{minWidth: "600px", maxWidth: "800px", height: "400px", backgroundColor: "white", borderRadius: "16px", padding: "16px"}}>
         <div align="center">
-          <img src="https://acciojob.com/src/Navbar/logo.svg" alt='nav' />
+          <img src="https://acciojob.com/src/Navbar/logo.svg" alt="" />
         </div>
         <div>
-        <input style={{borderRadius: "6px"}} type='text' value={roomId} onChange={e => setRoomId(e.target.value)} placeholder='ROOM ID' onKeyUp={handleInputEnter} />
-        <input style={{borderRadius: "6px"}} type='text' value={username} onChange={e => setRoomId(e.target.value)} placeholder='USERNAME' onKeyUp={handleInputEnter} />
-        <button style={{borderRadius: "6px"}} onClick={joinRoom}>JOIN</button>
-        <p style={{color: 'black'}}>Don't have a room ID? Create  
-        <span style={{color: "#EFB036", cursor: "pointer"}} onClick={generateRoomId}>New Room</span>
-        </p>
+          <input type="text" value={roomId} onChange={e => setRoomId(e.target.value)} placeholder='ROOM ID' onKeyUp={handleInputEnter} />
+          <input type="text" value={username} onChange={e => setUsername(e.target.value)} placeholder='USERNAME' onKeyUp={handleInputEnter} />
+          <button onClick={joinRoom}>JOIN</button>
+          <p style={{color: 'black'}}>
+            Don't have a room ID? create 
+            <span style={{color: "#EFB036", cursor: "pointer"}} onClick={generateRoomId}>
+              New Room
+            </span>
+          </p>
         </div>
       </div>
     </div>

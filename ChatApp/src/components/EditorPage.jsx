@@ -3,6 +3,7 @@ import toast from 'react-hot-toast';
 
 import { Navigate, useLocation, useNavigate, useParams } from 'react-router-dom';
 import { ACTIONS } from './Actions';
+import Editor from './Editor';
 
 
 
@@ -114,7 +115,42 @@ const EditorPage = () => {
     }
   return (
     <div>
-         khh
+         <div>
+            <div>
+                <img src='https://acciojob.com/src/Navbar/logo.svg' alt='logo' />
+                <hr />
+                <div>
+                    <h3>Members</h3>
+                    <div style={{backgroundColor: "#23486A" , padding: "8px 16px"}}>
+                        {clients.map(client => <p>🟢 {client.username}</p>)}
+                    </div>
+                </div>
+                <hr />
+                <div>
+                    <button onClick={copyRoomId} >Copy Room ID</button>
+                    <button onClick={leaveRoom}>Leave Room</button>
+                </div>
+                <hr/>
+
+                <div>
+                    <div>
+                        <select 
+                        value={selectedLanguages}
+                        onChange={e => setSelectedLanguages(e.target.value)}
+                        >
+                            {LANGUAGES.map(lang => <option key={lang} value={lang}>{lang}</option>)}
+                        </select>
+                    </div>
+                </div>
+                <Editor 
+                socketRef={socketRef}
+                roomId={roomId}
+                onCodeChange={code =>{
+                    codeRef.current = code;
+                }}
+                />
+            </div>
+         </div>
     </div>
   )
 }
