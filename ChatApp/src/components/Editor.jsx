@@ -1,11 +1,11 @@
 import CodeMirror from 'codemirror';
 import React, { useEffect, useRef } from 'react';
 import { ACTIONS } from './Actions';
-import 'codemirror/mode/javascript/javascript';
-import 'codemirror/theme/dracula.css';
-import 'codemirror/addon/edit/closetag';
-import 'codemirror/addon/edit/closebrackets';
-import 'codemirror/lib/codemirror.css';
+import "codemirror/mode/javascript/javascript";
+import "codemirror/theme/dracula.css";
+import "codemirror/addon/edit/closetag";
+import "codemirror/addon/edit/closebrackets";
+import "codemirror/lib/codemirror.css";
 
 const Editor = ({socketRef, roomId, onCodeChange})=>{
     const editorRef = useRef(null);
