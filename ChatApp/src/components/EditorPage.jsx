@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import toast from 'react-hot-toast';
 
-import { useNavigate, useParams } from 'react-router-dom';
+import { Navigate, useLocation, useNavigate, useParams } from 'react-router-dom';
 import { ACTIONS } from './Actions';
 
 
@@ -33,6 +33,8 @@ const EditorPage = () => {
     const [selectedLanguages, setSelectedLanguages] = useState("python3");
 
     const codeRef = useRef();
+
+    const Location = useLocation();
     const navigate = useNavigate()
     const  {roomId} =  useParams();
 
@@ -55,8 +57,61 @@ const EditorPage = () => {
                 roomId,
                 username: Location.state?.username
             })
+            socketRef.current.on(
+                ACTIONS.JOINED,
+                ({clients, username, socketId})=>{
+                    if(username !== Location.state?.username){
+                        toast.success(`${usename} joined the room`)
+                    }
+                    setClients(clients);
+                    socketRef.current.emit(ACTIONS.SYNC_CODE, {
+                        code: codeRef.current,
+                        socketId
+                    })
+                }
+            )
+            socketRef.current.on(ACTIONS.DISCONNECTED,
+                ({socketId, username})=>{
+                    toast.success(`${username} left the room`)
+                    setClients((prev)=>{
+                        return prev.filter(client=> client.socketId != socketId)
+                    })
+                }
+            )
+        }
+        init();
+
+        return ()=>{
+            socketRef.current && socketRef.current.disconnected();
+
         }
     },[])
+
+    if(!Location.state){
+        return <Navigate to="/" />
+    }
+
+    const copyRoomId = async() => {
+        try{
+            await navigate.clipboard.writeText(roomId);
+            toast.success("Room ID is copied");
+        } catch(error){
+            console.log(error);
+            toast.error("Unable to copy the room ID")
+        }
+    }
+
+    const leaveRoom = async()=>{
+        navigate('/')
+    }
+
+    const runCode = async() =>{
+
+    }
+
+    const toggleCompileWindow = ()=>{
+        setIsCompiledWindowOpen(!isCompiledWindowOpen);
+    }
   return (
     <div>
          khh
